@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 from contextlib import closing
 from dataclasses import dataclass
+from io import BytesIO
 from pathlib import Path
 from typing import Literal
 
@@ -36,7 +37,7 @@ class Document:
     issues: list[Issue]
 
 
-def ocr_page(path: Path, index: int) -> str:
+def ocr_page(path: Path | bytes, index: int) -> str:
     if not shutil.which("tesseract"):
         raise InputError("OCR requires Tesseract on PATH and the [ocr] installation extra")
     try:
@@ -51,7 +52,8 @@ def ocr_page(path: Path, index: int) -> str:
                 scale = min(300 / 72, (25_000_000 / max(width * height, 1)) ** 0.5)
                 bitmap = page.render(scale=scale)
                 try:
-                    bitmap.to_pil().save(Path(directory) / "page.png")
+                    with bitmap.to_pil() as image:
+                        image.save(Path(directory) / "page.png")
                 finally:
                     bitmap.close()
         try:
@@ -84,7 +86,7 @@ def read_document(path: Path, ocr: Literal["off", "auto", "always"] = "off") -> 
         pages = [Page(i + 1, t, "text") for i, t in enumerate(text.split("\f"))]
     elif path.suffix.lower() == ".pdf":
         try:
-            reader = PdfReader(path)
+            reader = PdfReader(BytesIO(content))
             if reader.is_encrypted:
                 raise InputError("Encrypted PDFs are not supported; provide a decrypted copy")
             if len(reader.pages) > MAX_PAGES:
@@ -94,7 +96,7 @@ def read_document(path: Path, ocr: Literal["off", "auto", "always"] = "off") -> 
                 source = "pdf"
                 sparse = len("".join(text.split())) < 40
                 if ocr == "always" or (ocr == "auto" and sparse):
-                    text = ocr_page(path, index)
+                    text = ocr_page(content, index)
                     source = "ocr"
                 if sparse and ocr == "off":
                     issues.append(

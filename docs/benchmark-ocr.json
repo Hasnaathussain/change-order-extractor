@@ -2,30 +2,43 @@
   "python": "3.12.3",
   "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
   "measurement": "warm process, sequential, local fixtures, no network",
+  "p95_method": "nearest rank; small samples have limited tail reliability",
   "results": [
     {
       "file": "clean.txt",
       "runs": 5,
-      "median_ms": 1.43,
-      "p95_ms": 1.705
+      "median_ms": 1.878,
+      "p95_ms": 2.27
     },
     {
       "file": "messy-credit.txt",
       "runs": 5,
-      "median_ms": 0.857,
-      "p95_ms": 0.875
+      "median_ms": 1.34,
+      "p95_ms": 1.466
+    },
+    {
+      "file": "audit/inline.txt",
+      "runs": 5,
+      "median_ms": 1.291,
+      "p95_ms": 1.302
     },
     {
       "file": "digital.pdf",
       "runs": 5,
-      "median_ms": 6.624,
-      "p95_ms": 7.027
+      "median_ms": 6.63,
+      "p95_ms": 6.965
+    },
+    {
+      "file": "audit/two-column.pdf",
+      "runs": 5,
+      "median_ms": 8.815,
+      "p95_ms": 15.72
     },
     {
       "file": "scanned.pdf",
       "runs": 5,
-      "median_ms": 2681.448,
-      "p95_ms": 2795.953
+      "median_ms": 2744.662,
+      "p95_ms": 2830.601
     }
   ]
 }

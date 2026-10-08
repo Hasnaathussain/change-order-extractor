@@ -1,13 +1,15 @@
 {
-  "corpus": "synthetic-v1",
-  "documents": 5,
-  "asserted_fields": 41,
-  "exact_matches": 34,
-  "exact_match_rate": 0.8292682926829268,
-  "resolved_asserted_fields": 31,
-  "abstentions_on_known_values": 7,
+  "corpus": "synthetic-v2",
+  "documents": 14,
+  "known_values": 128,
+  "correct_known_values": 128,
+  "recall_on_known_values": 1.0,
+  "resolved_asserted_fields": 128,
   "precision_on_resolved_fields": 1.0,
-  "correct_review_decisions": 5,
+  "abstentions_on_known_values": 0,
+  "expected_unresolved_fields": 5,
+  "correct_unresolved_fields": 5,
+  "correct_review_decisions": 14,
   "failures": [],
-  "limitation": "Regression results only; not evidence of accuracy on real documents."
+  "limitation": "Development regression fixtures, not held-out or real-document accuracy."
 }

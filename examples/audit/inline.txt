@@ -1,0 +1,7 @@
+CHANGE ORDER #018
+Project: Harbor Clinic  Issue Date: 2026-09-20
+Owner: Harbor Facilities; Contractor: Beacon Builders
+Contract Number: HC-21
+Description: Add a dedicated circuit for the imaging room.
+Currency: USD | Change Amount: USD 2,750.00
+Schedule Impact: 2 calendar days | Status: proposed

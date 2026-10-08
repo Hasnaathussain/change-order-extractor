@@ -7,49 +7,8 @@ from typing import Literal
 
 from .ingest import Document
 from .models import Alternative, Candidate, Evidence, Extracted, Fields, Issue, PageInfo, Result
+from .rules import CURRENCIES, MONEY_FIELDS, rule_candidates
 
-# Anchored labels prevent 'original contract amount' from becoming 'change amount'.
-LABELS = {
-    "change_order_number": (
-        r"(?:change[ -]?order(?:\s*(?:no\.?|number|#))?"
-        r"|CO\s*(?:no\.?|number|#))"
-    ),
-    "project_name": r"(?:project(?:\s*name)?|job\s*name)",
-    "contract_number": r"contract\s*(?:no\.?|number|#)",
-    "owner": r"(?:owner|client)",
-    "contractor": r"(?:contractor|general\s*contractor)",
-    "issue_date": r"(?:issue\s*date|date\s*issued|date)",
-    "description": r"(?:description(?:\s*of\s*(?:change|work))?|scope(?:\s*of\s*work)?|reason)",
-    "currency": r"currency",
-    "change_amount": (
-        r"(?:change(?:[ -]?order)?\s*(?:amount|total)"
-        r"|net\s*change|total\s*(?:change|amount))"
-    ),
-    "original_contract_amount": r"original\s*contract\s*(?:amount|sum|price)",
-    "prior_changes_amount": (
-        r"(?:prior|previous)\s*(?:changes|change\s*orders)"
-        r"(?:\s*(?:amount|total))?"
-    ),
-    "revised_contract_amount": r"(?:revised|new)\s*contract\s*(?:amount|sum|price)",
-    "schedule_days": (
-        r"(?:schedule\s*(?:change|impact)|time\s*(?:extension|change)"
-        r"|additional\s*days)"
-    ),
-    "status": r"(?:status|approval\s*status)",
-}
-PATTERNS = {
-    field: re.compile(rf"^[ \t]*{label}[ \t]*(?::|=|[ \t]{{2,}}|(?<=#))[ \t]*(.*)$", re.I)
-    for field, label in LABELS.items()
-}
-# Common title form: 'CHANGE ORDER #004' (without a second delimiter).
-TITLE = re.compile(r"^\s*(?:change[ -]?order|CO)\s*(?:#|no\.?|number)\s*([\w./-]+)\s*$", re.I)
-MONEY_FIELDS = {
-    "change_amount",
-    "original_contract_amount",
-    "prior_changes_amount",
-    "revised_contract_amount",
-}
-CURRENCIES = r"USD|CAD|AUD|EUR|GBP|PKR"
 REQUIRED = (
     "change_order_number",
     "project_name",
@@ -58,63 +17,6 @@ REQUIRED = (
     "currency",
     "change_amount",
 )
-
-
-def rule_candidates(document: Document) -> list[Candidate]:
-    candidates = []
-    for page in document.pages:
-        lines = page.text.splitlines()
-        for index, line in enumerate(lines):
-            title = TITLE.fullmatch(line)
-            if title:
-                candidates.append(
-                    Candidate(
-                        field="change_order_number",
-                        raw=title[1],
-                        page=page.number,
-                        quote=line,
-                    )
-                )
-                continue
-            for field, pattern in PATTERNS.items():
-                match = pattern.fullmatch(line)
-                if not match:
-                    continue
-                raw, quote = match[1].strip(), line
-                # Wrapped values and multi-line scope stop at the next recognized label/blank line.
-                if not raw or field == "description":
-                    continuation = []
-                    for next_line in lines[index + 1 :]:
-                        if not next_line.strip() or any(
-                            p.fullmatch(next_line) for p in PATTERNS.values()
-                        ):
-                            break
-                        if TITLE.fullmatch(next_line):
-                            break
-                        continuation.append(next_line)
-                        if field != "description":
-                            break
-                    if continuation:
-                        quote = "\n".join([line, *continuation])
-                        raw = "\n".join(([match[1]] if raw else []) + continuation).strip()
-                if raw:
-                    candidates.append(
-                        Candidate(field=field, raw=raw, page=page.number, quote=quote)
-                    )
-                break
-    # Infer only unambiguous currency markers associated with financial fields.
-    for candidate in candidates.copy():
-        if candidate.field in MONEY_FIELDS:
-            for marker in re.finditer(rf"\b({CURRENCIES})\b|([€£])", candidate.raw, re.I):
-                candidates.append(
-                    Candidate(
-                        field="currency",
-                        raw=marker[0],
-                        page=candidate.page,
-                        quote=candidate.quote,
-                    )
-                )
-    return candidates
 
 
 def normalize_money(raw: str) -> str:
@@ -128,10 +30,14 @@ def normalize_money(raw: str) -> str:
     if text.startswith("(") and text.endswith(")"):
         credit = True
         text = text[1:-1].strip()
+    if increase and credit:
+        raise ValueError("Parenthesized credit contradicts increase indicator")
     # Only US/UK decimal notation. Do not silently reinterpret European separators.
     if not re.fullmatch(r"[+-]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?", text):
         raise ValueError("Unsupported or ambiguous money format")
     amount = Decimal(text.replace(",", ""))
+    if abs(amount) >= Decimal("1e18"):
+        raise ValueError("Money is limited to 18 integer digits")
     if increase and amount < 0:
         raise ValueError("Negative amount contradicts increase indicator")
     if credit:
@@ -161,9 +67,40 @@ def normalize_date(raw: str, date_order: Literal["auto", "mdy", "dmy"]) -> str:
     raise ValueError("Unsupported or invalid date")
 
 
-def normalize(field: str, raw: str, date_order: Literal["auto", "mdy", "dmy"]):
+def normalize(field: str, raw: str, date_order: Literal["auto", "mdy", "dmy"], quote: str = ""):
+    context = quote.upper()
     if field in MONEY_FIELDS:
-        return normalize_money(raw)
+        amount = normalize_money(raw)
+        # A model can omit direction from its raw substring. Check the immediate context.
+        start = quote.find(raw)
+        if start >= 0:
+            prefix = context[max(0, start - 180) : start]
+            suffix = context[start + len(raw) :]
+            if field == "change_amount" and re.search(
+                r"\b(?:ORIGINAL|REVISED|NEW)\s+CONTRACT\s+(?:AMOUNT|SUM|PRICE)",
+                prefix,
+            ):
+                raise ValueError("Change amount candidate cites a different contract total")
+            negative = re.search(
+                rf"(?:CREDIT(?: OF)?|DECREASED?(?: BY)?|DEDUCT(?:ION)?(?: OF)?|-)"
+                rf"\s*(?:BY THIS CHANGE ORDER\s*)?(?:IN THE AMOUNT OF\s*)?"
+                rf"(?:(?:{CURRENCIES})|[$€£])?\s*$",
+                prefix,
+            ) or re.match(r"\s*(?:CREDIT|DECREASE)\b", suffix)
+            parenthesized = re.search(
+                rf"\(\s*(?:(?:{CURRENCIES})|[$€£])?\s*" + re.escape(raw.upper()) + r"\s*\)", context
+            )
+            if negative or parenthesized:
+                amount = f"{-abs(Decimal(amount)):.2f}" if Decimal(amount) else "0.00"
+            positive = re.search(
+                r"(?:INCREASED? BY|ADD)\s*"
+                rf"(?:THIS CHANGE ORDER\s*)?(?:IN THE AMOUNT OF\s*)?"
+                rf"(?:\(\s*)?(?:(?:{CURRENCIES})|[$€£])?\s*$",
+                prefix,
+            )
+            if positive and Decimal(amount) < 0:
+                raise ValueError("Negative amount contradicts source increase indicator")
+        return amount
     if field == "issue_date":
         return normalize_date(raw, date_order)
     if field == "currency":
@@ -172,12 +109,43 @@ def normalize(field: str, raw: str, date_order: Literal["auto", "mdy", "dmy"]):
             raise ValueError("Currency must be explicit; '$' alone is ambiguous")
         return currency
     if field == "schedule_days":
+        words = dict(
+            zip(
+                (
+                    "zero",
+                    "one",
+                    "two",
+                    "three",
+                    "four",
+                    "five",
+                    "six",
+                    "seven",
+                    "eight",
+                    "nine",
+                    "ten",
+                ),
+                range(11),
+                strict=True,
+            )
+        )
+        raw = re.sub(r"^[A-Za-z]+", lambda m: str(words.get(m[0].lower(), m[0])), raw.strip())
         match = re.fullmatch(r"([+-]?\d+)\s*(?:calendar\s*)?(?:days?)?", raw.strip(), re.I)
         if not match:
             raise ValueError("Schedule must be an explicit integer number of calendar days")
-        return int(match[1])
+        days = int(match[1])
+        if re.search(r"\bDECREASED BY\s+", context):
+            days = -abs(days)
+        return days
     if field == "status":
         status = raw.strip().lower()
+        if status == "proposal":
+            status = "proposed"
+        if status == "approved" and re.search(
+            r"\b(?:NOT(?: YET)?(?: BEEN)? APPROVED|APPROVAL (?:HAS )?NOT)\b", context
+        ):
+            raise ValueError("Approval candidate contradicts a source negation")
+        if status == "approved" and re.search(r"\bAPPROVED\s+BY\s*:", context):
+            raise ValueError("Approval cannot be established by a signature label alone")
         if status not in {"proposed", "approved", "rejected", "pending"}:
             raise ValueError("Unrecognized approval status")
         return status
@@ -191,6 +159,11 @@ def normalize(field: str, raw: str, date_order: Literal["auto", "mdy", "dmy"]):
     return value
 
 
+def validate_options(date_order: str, threshold: float) -> None:
+    if date_order not in {"auto", "mdy", "dmy"} or not 0 <= threshold <= 1:
+        raise ValueError("Invalid date order or review threshold")
+
+
 def extract_document(
     document: Document,
     *,
@@ -198,15 +171,15 @@ def extract_document(
     model_candidates: list[Candidate] | None = None,
     threshold: float = 0.85,
 ) -> Result:
-    if date_order not in {"auto", "mdy", "dmy"} or not 0 <= threshold <= 1:
-        raise ValueError("Invalid date order or review threshold")
+    validate_options(date_order, threshold)
     issues = list(document.issues)
     grouped: dict[str, dict[object, list[Evidence]]] = {field: {} for field in Fields.model_fields}
     invalid: set[str] = set()
     pages = {page.number: page for page in document.pages}
-    candidates = [(c, "rules") for c in rule_candidates(document)]
-    candidates.extend((c, "llm") for c in (model_candidates or []))
-    for candidate, method in candidates:
+    candidates = rule_candidates(document)
+    rejected_evidence = {field: [] for field in Fields.model_fields}
+    candidates.extend((c, "llm", None) for c in (model_candidates or []))
+    for candidate, method, offset in candidates:
         page = pages.get(candidate.page)
         if page is None or candidate.quote not in page.text or candidate.raw not in candidate.quote:
             invalid.add(candidate.field)
@@ -218,7 +191,7 @@ def extract_document(
                 )
             )
             continue
-        start = page.text.index(candidate.quote)
+        start = page.text.index(candidate.quote) if offset is None else offset
         evidence = Evidence(
             page=page.number,
             start=start,
@@ -228,9 +201,10 @@ def extract_document(
             source=page.source,
         )
         try:
-            value = normalize(candidate.field, candidate.raw, date_order)
+            value = normalize(candidate.field, candidate.raw, date_order, candidate.quote)
         except ValueError as exc:
             invalid.add(candidate.field)
+            rejected_evidence[candidate.field].append(evidence)
             issues.append(Issue(code="invalid_value", field=candidate.field, message=str(exc)))
             continue
         bucket = grouped[candidate.field].setdefault(value, [])
@@ -257,7 +231,8 @@ def extract_document(
             value, evidence = next(iter(values.items()))
             # Scores express extraction quality, not calibrated probabilities.
             score = max(
-                0.70 if e.source == "ocr" else 0.80 if e.method == "llm" else 0.95 for e in evidence
+                0.70 if e.source == "ocr" else 0.80 if e.method in {"llm", "context"} else 0.95
+                for e in evidence
             )
             if field in invalid:
                 score = min(score, 0.60)
@@ -265,7 +240,10 @@ def extract_document(
                 value=value, confidence=score, state="extracted", evidence=evidence
             )
         else:
-            output[field] = Extracted(state="invalid" if field in invalid else "missing")
+            output[field] = Extracted(
+                state="invalid" if field in invalid else "missing",
+                evidence=rejected_evidence[field],
+            )
     fields = Fields.model_validate({key: value.model_dump() for key, value in output.items()})
     # Do not invent missing prior changes or fill a revised sum from arithmetic.
     amounts = [
@@ -287,9 +265,9 @@ def extract_document(
                     message="Original + prior changes + this change != revised contract",
                 )
             )
-    for field in REQUIRED:
+    for field in Fields.model_fields:
         extracted = getattr(fields, field)
-        if extracted.value is None:
+        if field in REQUIRED and extracted.value is None:
             issues.append(
                 Issue(
                     code="required_field_unresolved",
@@ -297,7 +275,7 @@ def extract_document(
                     message="Required field needs human review",
                 )
             )
-        elif extracted.confidence < threshold:
+        elif extracted.value is not None and extracted.confidence < threshold:
             issues.append(
                 Issue(
                     code="low_confidence",

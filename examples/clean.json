@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "source_sha256": "67a0aebcf69a98d6aedfc13dc034a02d0ece743169c8c064779b301541e67047",
   "pages": [
     {
@@ -269,5 +269,5 @@
   "issues": [],
   "review_required": false,
   "overall_confidence": 0.95,
-  "confidence_policy": "heuristic-v1"
+  "confidence_policy": "heuristic-v2"
 }

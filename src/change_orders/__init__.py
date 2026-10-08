@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import Literal
 
-from .extract import extract_document
+from .extract import extract_document, validate_options
 from .ingest import read_document
 from .models import Result
 
@@ -18,6 +18,7 @@ def extract(
     model: str | None = None,
     threshold: float = 0.85,
 ) -> Result:
+    validate_options(date_order, threshold)
     document = read_document(Path(path), ocr=ocr)
     candidates = None
     if model:

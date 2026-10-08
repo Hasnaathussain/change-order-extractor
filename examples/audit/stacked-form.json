@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.1",
+  "source_sha256": "815746f01eb7d559d7681f54985a5e15c6bc3b8ecd0d0abc54496114ba735592",
+  "pages": [
+    {
+      "page": 1,
+      "source": "text",
+      "characters": 496
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "021",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 0,
+          "end": 23,
+          "quote": "Change Order Number\n021",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "project_name": {
+      "value": "Harbor Clinic",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 24,
+          "end": 50,
+          "quote": "Project Name\nHarbor Clinic",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "contract_number": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "owner": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "contractor": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "issue_date": {
+      "value": "2026-09-22",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 51,
+          "end": 72,
+          "quote": "Issue Date\n2026-09-22",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "description": {
+      "value": "Omit the exterior sunshade and seal the anchor penetrations.",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 73,
+          "end": 155,
+          "quote": "Description of Change\nOmit the exterior sunshade and seal the anchor penetrations.",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "currency": {
+      "value": "USD",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 272,
+          "end": 355,
+          "quote": "The Contract Sum will be decreased by this Change Order in the amount of\nUSD 250.00",
+          "method": "context",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 156,
+          "end": 200,
+          "quote": "The original Contract Sum was\nUSD 100,000.00",
+          "method": "context",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 201,
+          "end": 271,
+          "quote": "The net change by previously authorized Change Orders was\nUSD 5,000.00",
+          "method": "context",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 356,
+          "end": 427,
+          "quote": "The new Contract Sum including this Change Order will be\nUSD 104,750.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "change_amount": {
+      "value": "-250.00",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 272,
+          "end": 355,
+          "quote": "The Contract Sum will be decreased by this Change Order in the amount of\nUSD 250.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "original_contract_amount": {
+      "value": "100000.00",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 156,
+          "end": 200,
+          "quote": "The original Contract Sum was\nUSD 100,000.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "prior_changes_amount": {
+      "value": "5000.00",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 201,
+          "end": 271,
+          "quote": "The net change by previously authorized Change Orders was\nUSD 5,000.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "revised_contract_amount": {
+      "value": "104750.00",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 356,
+          "end": 427,
+          "quote": "The new Contract Sum including this Change Order will be\nUSD 104,750.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "schedule_days": {
+      "value": -1,
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 428,
+          "end": 478,
+          "quote": "Contract Time will be decreased by 1 calendar days",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "status": {
+      "value": "proposed",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 479,
+          "end": 495,
+          "quote": "Status: proposed",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    }
+  },
+  "issues": [
+    {
+      "code": "low_confidence",
+      "field": "currency",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "change_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "original_contract_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "prior_changes_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "revised_contract_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "schedule_days",
+      "message": "Confidence is below the configured review threshold"
+    }
+  ],
+  "review_required": true,
+  "overall_confidence": 0.8,
+  "confidence_policy": "heuristic-v2"
+}

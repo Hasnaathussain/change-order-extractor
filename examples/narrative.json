@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.1",
+  "source_sha256": "458d21ef969741e91750ff40492f5cfa2be3852f3d1a847836c05a23028e3473",
+  "pages": [
+    {
+      "page": 1,
+      "source": "text",
+      "characters": 409
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "CO-019",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 13,
+          "end": 32,
+          "quote": "change order CO-019",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "project_name": {
+      "value": "Riverside Library Retrofit",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 33,
+          "end": 82,
+          "quote": "for the Riverside Library Retrofit under\ncontract",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "contract_number": {
+      "value": "RL-2026-17",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 68,
+          "end": 93,
+          "quote": "under\ncontract RL-2026-17",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "owner": {
+      "value": "Riverside Facilities",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 228,
+          "end": 276,
+          "quote": "will carry out the work for Riverside Facilities",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "contractor": {
+      "value": "Northbridge Construction",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 203,
+          "end": 255,
+          "quote": "Northbridge Construction\nwill carry out the work for",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "issue_date": {
+      "value": "2026-09-21",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 95,
+          "end": 123,
+          "quote": "Issued on September 21, 2026",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "description": {
+      "value": "adding a dedicated power circuit for the new server rack",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 125,
+          "end": 201,
+          "quote": "this request covers adding\na dedicated power circuit for the new server rack",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "currency": {
+      "value": "USD",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 282,
+          "end": 317,
+          "quote": "proposed adjustment is\nUSD 1,850.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "change_amount": {
+      "value": "1850.00",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 282,
+          "end": 317,
+          "quote": "proposed adjustment is\nUSD 1,850.00",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "original_contract_amount": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "prior_changes_amount": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "revised_contract_amount": {
+      "value": null,
+      "confidence": 0.0,
+      "state": "missing",
+      "evidence": [],
+      "alternatives": []
+    },
+    "schedule_days": {
+      "value": 2,
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 319,
+          "end": 352,
+          "quote": "with two additional calendar days",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "status": {
+      "value": "proposed",
+      "confidence": 0.8,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 354,
+          "end": 372,
+          "quote": "This is a proposal",
+          "method": "context",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    }
+  },
+  "issues": [
+    {
+      "code": "low_confidence",
+      "field": "change_order_number",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "project_name",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "contract_number",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "owner",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "contractor",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "issue_date",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "description",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "currency",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "change_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "schedule_days",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "status",
+      "message": "Confidence is below the configured review threshold"
+    }
+  ],
+  "review_required": true,
+  "overall_confidence": 0.8,
+  "confidence_policy": "heuristic-v2"
+}

@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import math
 import platform
 import statistics
 import time
@@ -17,9 +18,13 @@ args = parser.parse_args()
 if args.runs < 2:
     parser.error("--runs must be >=2")
 rows = []
-for filename in ["clean.txt", "messy-credit.txt", "digital.pdf"] + (
-    ["scanned.pdf"] if args.ocr else []
-):
+for filename in [
+    "clean.txt",
+    "messy-credit.txt",
+    "audit/inline.txt",
+    "digital.pdf",
+    "audit/two-column.pdf",
+] + (["scanned.pdf"] if args.ocr else []):
     mode = "auto" if filename == "scanned.pdf" else "off"
     extract(ROOT / "examples" / filename, ocr=mode)
     timings = []
@@ -32,7 +37,7 @@ for filename in ["clean.txt", "messy-credit.txt", "digital.pdf"] + (
             "file": filename,
             "runs": args.runs,
             "median_ms": round(statistics.median(timings), 3),
-            "p95_ms": round(sorted(timings)[int(0.95 * (len(timings) - 1))], 3),
+            "p95_ms": round(sorted(timings)[math.ceil(0.95 * len(timings)) - 1], 3),
         }
     )
 print(
@@ -41,6 +46,7 @@ print(
             "python": platform.python_version(),
             "platform": platform.platform(),
             "measurement": "warm process, sequential, local fixtures, no network",
+            "p95_method": "nearest rank; small samples have limited tail reliability",
             "results": rows,
         },
         indent=2,

@@ -1,33 +1,10 @@
 {
   "$defs": {
-    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________": {
+    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__json_schema_extra___format___metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________AfterValidator__": {
       "additionalProperties": false,
       "properties": {
         "value": {
-          "pattern": "^-?(?:0|[1-9]\\d*)\\.\\d{2}$",
-          "title": "Value",
-          "type": "string"
-        },
-        "evidence": {
-          "items": {
-            "$ref": "#/$defs/Evidence"
-          },
-          "minItems": 1,
-          "title": "Evidence",
-          "type": "array"
-        }
-      },
-      "required": [
-        "value",
-        "evidence"
-      ],
-      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d*)\\\\.\\\\d{2}$')])]]",
-      "type": "object"
-    },
-    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________": {
-      "additionalProperties": false,
-      "properties": {
-        "value": {
+          "format": "date",
           "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
           "title": "Value",
           "type": "string"
@@ -45,7 +22,31 @@
         "value",
         "evidence"
       ],
-      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')])]]",
+      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, json_schema_extra={'format': 'date'}, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')]), AfterValidator]]",
+      "type": "object"
+    },
+    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,17})\\.\\d{2}$",
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d{0,17})\\\\.\\\\d{2}$')])]]",
       "type": "object"
     },
     "Alternative_Literal__USD____CAD____AUD____EUR____GBP____PKR___": {
@@ -180,6 +181,7 @@
         "method": {
           "enum": [
             "rules",
+            "context",
             "llm"
           ],
           "title": "Method",
@@ -206,64 +208,13 @@
       "title": "Evidence",
       "type": "object"
     },
-    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________": {
+    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__json_schema_extra___format___metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________AfterValidator__": {
       "additionalProperties": false,
       "properties": {
         "value": {
           "anyOf": [
             {
-              "pattern": "^-?(?:0|[1-9]\\d*)\\.\\d{2}$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Value"
-        },
-        "confidence": {
-          "default": 0.0,
-          "maximum": 1,
-          "minimum": 0,
-          "title": "Confidence",
-          "type": "number"
-        },
-        "state": {
-          "default": "missing",
-          "enum": [
-            "extracted",
-            "missing",
-            "invalid",
-            "conflict"
-          ],
-          "title": "State",
-          "type": "string"
-        },
-        "evidence": {
-          "items": {
-            "$ref": "#/$defs/Evidence"
-          },
-          "title": "Evidence",
-          "type": "array"
-        },
-        "alternatives": {
-          "items": {
-            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
-          },
-          "title": "Alternatives",
-          "type": "array"
-        }
-      },
-      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d*)\\\\.\\\\d{2}$')])]]",
-      "type": "object"
-    },
-    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________": {
-      "additionalProperties": false,
-      "properties": {
-        "value": {
-          "anyOf": [
-            {
+              "format": "date",
               "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
               "type": "string"
             },
@@ -301,13 +252,65 @@
         },
         "alternatives": {
           "items": {
-            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________"
+            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__json_schema_extra___format___metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________AfterValidator__"
           },
           "title": "Alternatives",
           "type": "array"
         }
       },
-      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')])]]",
+      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, json_schema_extra={'format': 'date'}, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')]), AfterValidator]]",
+      "type": "object"
+    },
+    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^-?(?:0|[1-9]\\d{0,17})\\.\\d{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d{0,17})\\\\.\\\\d{2}$')])]]",
       "type": "object"
     },
     "Extracted_Literal__USD____CAD____AUD____EUR____GBP____PKR___": {
@@ -547,7 +550,7 @@
           "$ref": "#/$defs/Extracted_str_"
         },
         "issue_date": {
-          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________"
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__json_schema_extra___format___metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________AfterValidator__"
         },
         "description": {
           "$ref": "#/$defs/Extracted_str_"
@@ -556,16 +559,16 @@
           "$ref": "#/$defs/Extracted_Literal__USD____CAD____AUD____EUR____GBP____PKR___"
         },
         "change_amount": {
-          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________"
         },
         "original_contract_amount": {
-          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________"
         },
         "prior_changes_amount": {
-          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________"
         },
         "revised_contract_amount": {
-          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_0___d_2________"
         },
         "schedule_days": {
           "$ref": "#/$defs/Extracted_int_"
@@ -612,6 +615,7 @@
       "additionalProperties": false,
       "properties": {
         "page": {
+          "minimum": 1,
           "title": "Page",
           "type": "integer"
         },
@@ -625,6 +629,7 @@
           "type": "string"
         },
         "characters": {
+          "minimum": 0,
           "title": "Characters",
           "type": "integer"
         }
@@ -641,12 +646,13 @@
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "1.0",
-      "default": "1.0",
+      "const": "1.1",
+      "default": "1.1",
       "title": "Schema Version",
       "type": "string"
     },
     "source_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
       "title": "Source Sha256",
       "type": "string"
     },
@@ -678,8 +684,8 @@
       "type": "number"
     },
     "confidence_policy": {
-      "const": "heuristic-v1",
-      "default": "heuristic-v1",
+      "const": "heuristic-v2",
+      "default": "heuristic-v2",
       "title": "Confidence Policy",
       "type": "string"
     }

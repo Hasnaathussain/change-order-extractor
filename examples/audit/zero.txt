@@ -1,0 +1,8 @@
+Change Order #: 026
+Project: Harbor Clinic
+Issue Date: 2026-09-27
+Description: Substitute the approved finish at no cost.
+Currency: USD
+Change Amount: USD 0.00
+Schedule Impact: 0 days
+Status: approved

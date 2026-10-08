@@ -15,7 +15,8 @@
       "prior_changes_amount": "5000.00",
       "revised_contract_amount": "117450.75",
       "schedule_days": 3,
-      "status": "proposed"
+      "status": "proposed",
+      "description": "Replace the existing lobby lighting with LED fixtures. Include removal, disposal, wiring and commissioning."
     }
   },
   {
@@ -42,7 +43,15 @@
       "currency": "USD",
       "revised_contract_amount": "200000.00",
       "status": "approved"
-    }
+    },
+    "states": {
+      "issue_date": "invalid",
+      "change_amount": "conflict"
+    },
+    "issue_codes": [
+      "conflicting_values",
+      "invalid_value"
+    ]
   },
   {
     "file": "digital.pdf",
@@ -67,8 +76,158 @@
       "currency": "USD",
       "change_amount": "1850.00",
       "schedule_days": 2,
+      "status": "proposed",
+      "contract_number": "RL-2026-17",
+      "owner": "Riverside Facilities",
+      "contractor": "Northbridge Construction",
+      "description": "adding a dedicated power circuit for the new server rack"
+    }
+  },
+  {
+    "file": "audit/inline.txt",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "018",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-20",
+      "owner": "Harbor Facilities",
+      "contractor": "Beacon Builders",
+      "contract_number": "HC-21",
+      "description": "Add a dedicated circuit for the imaging room.",
+      "currency": "USD",
+      "change_amount": "2750.00",
+      "schedule_days": 2,
       "status": "proposed"
+    }
+  },
+  {
+    "file": "audit/stacked-form.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "021",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-22",
+      "description": "Omit the exterior sunshade and seal the anchor penetrations.",
+      "currency": "USD",
+      "change_amount": "-250.00",
+      "original_contract_amount": "100000.00",
+      "prior_changes_amount": "5000.00",
+      "revised_contract_amount": "104750.00",
+      "schedule_days": -1,
+      "status": "proposed"
+    }
+  },
+  {
+    "file": "audit/pipe-table.txt",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "022",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-23",
+      "owner": "Harbor Facilities",
+      "contractor": "Beacon Builders",
+      "description": "Replace the damaged exterior door.",
+      "currency": "USD",
+      "change_amount": "950.25",
+      "schedule_days": 0,
+      "status": "pending"
+    }
+  },
+  {
+    "file": "audit/missing-currency.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "023",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-24",
+      "description": "Add safety signage at the east entrance.",
+      "currency": null,
+      "change_amount": "325.00",
+      "schedule_days": 0,
+      "status": "proposed"
+    }
+  },
+  {
+    "file": "audit/arithmetic.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "024",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-25",
+      "description": "Install an additional access reader.",
+      "currency": "USD",
+      "change_amount": "450.00",
+      "original_contract_amount": "100000.00",
+      "prior_changes_amount": "5000.00",
+      "revised_contract_amount": "105000.00"
     },
-    "allow_abstention": true
+    "issue_codes": [
+      "contract_total_mismatch"
+    ]
+  },
+  {
+    "file": "audit/credit-prose.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "CO-025",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-26",
+      "contract_number": "HC-21",
+      "description": "omitting the unused canopy",
+      "currency": "USD",
+      "change_amount": "-1500.00",
+      "schedule_days": 1,
+      "status": "proposed"
+    }
+  },
+  {
+    "file": "audit/zero.txt",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "026",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-27",
+      "description": "Substitute the approved finish at no cost.",
+      "currency": "USD",
+      "change_amount": "0.00",
+      "schedule_days": 0,
+      "status": "approved"
+    }
+  },
+  {
+    "file": "audit/negated-status.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "027",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-28",
+      "description": "Relocate the reception desk.",
+      "currency": "USD",
+      "change_amount": "1100.00",
+      "status": null
+    },
+    "states": {
+      "status": "invalid"
+    }
+  },
+  {
+    "file": "audit/two-column.pdf",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "028",
+      "project_name": "Harbor Clinic",
+      "issue_date": "2026-09-29",
+      "owner": "Harbor Facilities",
+      "contractor": "Beacon Builders",
+      "contract_number": "HC-21",
+      "description": "Add the second floor access reader.",
+      "currency": "USD",
+      "change_amount": "800.00",
+      "original_contract_amount": "100000.00",
+      "prior_changes_amount": "5000.00",
+      "revised_contract_amount": "105800.00",
+      "schedule_days": 0,
+      "status": "proposed"
+    }
   }
 ]

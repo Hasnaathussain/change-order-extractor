@@ -33,3 +33,32 @@ canvas.drawString(45, 765, "Project: Synthetic mixed document")
 canvas.showPage()
 canvas.drawImage(ImageReader(image), 0, 0, width=595, height=842)
 canvas.save()
+
+# A separate form-like PDF with label/value columns and more than one page.
+canvas = Canvas(str(ROOT / "examples/audit/two-column.pdf"), invariant=1)
+canvas.setFont("Helvetica", 11)
+rows = [
+    ("Change Order #: 028", "Issue Date: 2026-09-29"),
+    ("Project: Harbor Clinic", "Contract Number: HC-21"),
+    ("Owner: Harbor Facilities", "Contractor: Beacon Builders"),
+]
+for index, (left, right) in enumerate(rows):
+    canvas.drawString(40, 790 - index * 25, left)
+    canvas.drawString(320, 790 - index * 25, right)
+canvas.drawString(40, 680, "Description: Add the second floor access reader.")
+canvas.drawString(40, 650, "Status: proposed")
+canvas.showPage()
+canvas.setFont("Helvetica", 11)
+for index, line in enumerate(
+    [
+        "Change Order #: 028",
+        "Currency: USD",
+        "Original Contract Amount: USD 100,000.00",
+        "Prior Changes: USD 5,000.00",
+        "Change Amount: USD 800.00",
+        "Revised Contract Amount: USD 105,800.00",
+        "Schedule Impact: 0 days",
+    ]
+):
+    canvas.drawString(40, 790 - index * 25, line)
+canvas.save()

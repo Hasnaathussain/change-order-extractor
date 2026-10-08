@@ -37,7 +37,8 @@ def propose(document: Document, *, model: str) -> Candidates:
     try:
         # One request, finite timeout, no hidden retries/cost amplification.
         with httpx.Client(timeout=45.0) as client:
-            response = client.post(
+            with client.stream(
+                "POST",
                 "https://api.openai.com/v1/chat/completions",
                 headers={"Authorization": f"Bearer {key}"},
                 json={
@@ -56,11 +57,14 @@ def propose(document: Document, *, model: str) -> Candidates:
                         },
                     },
                 },
-            )
-            response.raise_for_status()
-            if len(response.content) > 1_000_000:
-                raise ProviderError("Model response exceeds 1 MB")
-            choice = response.json()["choices"][0]
+            ) as response:
+                response.raise_for_status()
+                body = bytearray()
+                for chunk in response.iter_bytes():
+                    if len(body) + len(chunk) > 1_000_000:
+                        raise ProviderError("Model response exceeds 1 MB")
+                    body.extend(chunk)
+            choice = json.loads(body)["choices"][0]
             if choice["finish_reason"] != "stop" or choice["message"].get("refusal"):
                 raise ProviderError("Model refused or did not finish its structured response")
             return Candidates.model_validate_json(choice["message"]["content"])

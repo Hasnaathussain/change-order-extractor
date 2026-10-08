@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "source_sha256": "25d702ea093a5a1c8d4c228af59a22c5115943a24350115110e852e475a547f4",
   "pages": [
     {
@@ -279,6 +279,21 @@
     },
     {
       "code": "low_confidence",
+      "field": "contract_number",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "owner",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "contractor",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
       "field": "issue_date",
       "message": "Confidence is below the configured review threshold"
     },
@@ -296,9 +311,34 @@
       "code": "low_confidence",
       "field": "change_amount",
       "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "original_contract_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "prior_changes_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "revised_contract_amount",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "schedule_days",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "status",
+      "message": "Confidence is below the configured review threshold"
     }
   ],
   "review_required": true,
   "overall_confidence": 0.7,
-  "confidence_policy": "heuristic-v1"
+  "confidence_policy": "heuristic-v2"
 }

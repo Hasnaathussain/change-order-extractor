@@ -1,0 +1,9 @@
+Change Order #: 024
+Project: Harbor Clinic
+Issue Date: 2026-09-25
+Description: Install an additional access reader.
+Currency: USD
+Original Contract Amount: USD 100,000.00
+Prior Changes: USD 5,000.00
+Change Amount: USD 450.00
+Revised Contract Amount: USD 105,000.00

@@ -90,3 +90,60 @@ def test_model_input_limit(monkeypatch):
     document = Document("a" * 64, [Page(1, "x" * 60_001, "text")], [])
     with pytest.raises(ProviderError, match="60,000"):
         propose(document, model="test-model")
+
+
+def test_response_size_is_bounded(monkeypatch):
+    mock_api(monkeypatch, httpx.Response(200, content=b"x" * 1_000_001))
+    with pytest.raises(ProviderError, match="1 MB"):
+        propose(DOCUMENT, model="test-model")
+
+
+def test_timeout_is_explicit_and_not_retried(monkeypatch):
+    client_type = httpx.Client
+    calls = []
+
+    def handler(request):
+        calls.append(request)
+        raise httpx.ReadTimeout("Timeout", request=request)
+
+    monkeypatch.setenv("OPENAI_API_KEY", "synthetic-test-key")
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kw: client_type(
+            transport=httpx.MockTransport(handler),
+            **kw,
+        ),
+    )
+    with pytest.raises(ProviderError):
+        propose(DOCUMENT, model="test-model")
+    assert len(calls) == 1
+
+
+def test_public_api_routes_model_candidates_through_validation(monkeypatch, tmp_path):
+    from change_orders import extract
+
+    path = tmp_path / "input.txt"
+    path.write_text("The adjustment is a credit of USD 250.00.")
+    body = {
+        "candidates": [
+            {"field": "change_amount", "raw": "USD 250.00", "page": 1, "quote": path.read_text()}
+        ]
+    }
+    mock_api(
+        monkeypatch,
+        httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": json.dumps(body)},
+                    }
+                ]
+            },
+        ),
+    )
+    result = extract(path, model="test-model")
+    assert result.fields.change_amount.value == "-250.00"
+    assert result.review_required

@@ -1,0 +1,7 @@
+Change Order #: 027
+Project: Harbor Clinic
+Issue Date: 2026-09-28
+Description: Relocate the reception desk.
+Currency: USD
+Change Amount: USD 1,100.00
+Status: not approved

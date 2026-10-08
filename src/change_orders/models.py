@@ -1,12 +1,24 @@
 """Public output contract. Missing and conflicting values are first-class states."""
 
+from datetime import date
 from typing import Annotated, Generic, Literal, TypeVar
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 
 T = TypeVar("T")
-Money = Annotated[str, Field(pattern=r"^-?(?:0|[1-9]\d*)\.\d{2}$")]
-ISODate = Annotated[str, Field(pattern=r"^\d{4}-\d{2}-\d{2}$")]
+Money = Annotated[str, Field(pattern=r"^-?(?:0|[1-9]\d{0,17})\.\d{2}$")]
+
+
+def valid_date(value: str) -> str:
+    date.fromisoformat(value)
+    return value
+
+
+ISODate = Annotated[
+    str,
+    Field(pattern=r"^\d{4}-\d{2}-\d{2}$", json_schema_extra={"format": "date"}),
+    AfterValidator(valid_date),
+]
 
 
 class Model(BaseModel):
@@ -18,7 +30,7 @@ class Evidence(Model):
     start: int = Field(ge=0)
     end: int = Field(gt=0)
     quote: str = Field(min_length=1)
-    method: Literal["rules", "llm"]
+    method: Literal["rules", "context", "llm"]
     source: Literal["text", "pdf", "ocr"]
 
     @model_validator(mode="after")
@@ -47,8 +59,13 @@ class Extracted(Model, Generic[T]):
                 raise ValueError("Extracted values require evidence and positive confidence")
         elif self.value is not None or self.confidence != 0:
             raise ValueError("Unresolved values must be null with zero confidence")
-        if self.state == "conflict" and len(self.alternatives) < 2:
-            raise ValueError("Conflicts require at least two alternatives")
+        if self.state == "conflict":
+            if len({repr(a.value) for a in self.alternatives}) < 2:
+                raise ValueError("Conflicts require at least two distinct alternatives")
+        elif self.alternatives:
+            raise ValueError("Only conflicts may contain alternatives")
+        if self.state == "missing" and self.evidence:
+            raise ValueError("Missing fields cannot contain evidence")
         return self
 
 
@@ -80,20 +97,34 @@ class Issue(Model):
 
 
 class PageInfo(Model):
-    page: int
+    page: int = Field(ge=1)
     source: Literal["text", "pdf", "ocr"]
-    characters: int
+    characters: int = Field(ge=0)
 
 
 class Result(Model):
-    schema_version: Literal["1.0"] = "1.0"
-    source_sha256: str
+    schema_version: Literal["1.1"] = "1.1"
+    source_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     pages: list[PageInfo]
     fields: Fields
     issues: list[Issue]
     review_required: bool
     overall_confidence: float = Field(ge=0, le=1)
-    confidence_policy: Literal["heuristic-v1"] = "heuristic-v1"
+    confidence_policy: Literal["heuristic-v2"] = "heuristic-v2"
+
+    @model_validator(mode="after")
+    def valid_result(self):
+        if self.review_required != bool(self.issues):
+            raise ValueError("Review flag must agree with validation issues")
+        numbers = [page.page for page in self.pages]
+        if not numbers or len(set(numbers)) != len(numbers):
+            raise ValueError("Pages must be present and uniquely numbered")
+        page_sizes = {page.page: page.characters for page in self.pages}
+        for extracted in (getattr(self.fields, name) for name in Fields.model_fields):
+            evidence = extracted.evidence + [e for a in extracted.alternatives for e in a.evidence]
+            if any(e.page not in page_sizes or e.end > page_sizes[e.page] for e in evidence):
+                raise ValueError("Evidence must lie within a source page")
+        return self
 
 
 FieldName = Literal[

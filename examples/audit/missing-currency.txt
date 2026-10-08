@@ -1,0 +1,7 @@
+Change Order #: 023
+Project: Harbor Clinic
+Issue Date: 2026-09-24
+Description: Add safety signage at the east entrance.
+Change Amount: $325.00
+Schedule Impact: 0 days
+Status: proposed

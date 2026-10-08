@@ -1,0 +1,18 @@
+Change Order Number
+021
+Project Name
+Harbor Clinic
+Issue Date
+2026-09-22
+Description of Change
+Omit the exterior sunshade and seal the anchor penetrations.
+The original Contract Sum was
+USD 100,000.00
+The net change by previously authorized Change Orders was
+USD 5,000.00
+The Contract Sum will be decreased by this Change Order in the amount of
+USD 250.00
+The new Contract Sum including this Change Order will be
+USD 104,750.00
+Contract Time will be decreased by 1 calendar days
+Status: proposed
