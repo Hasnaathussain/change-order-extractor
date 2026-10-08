@@ -9,10 +9,12 @@ The default path runs locally without an API key. It handles labeled lines, same
 Python 3.11 or later:
 
 ```bash
+git clone https://github.com/Hasnaathussain/change-order-extractor.git
+cd change-order-extractor
 python -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev,ocr,llm]'
-change-orders examples/clean.txt -o result.json
+change-orders examples/clean.txt -o local-results/result.json
 change-orders examples/digital.pdf
 ```
 
@@ -21,7 +23,7 @@ For scanned PDFs, install Tesseract with English language data, then:
 ```bash
 # Ubuntu / Debian
 sudo apt-get install tesseract-ocr tesseract-ocr-eng
-change-orders examples/scanned.pdf --ocr auto -o scanned.json
+change-orders examples/scanned.pdf --ocr auto -o local-results/scanned.json
 ```
 
 Exit codes: **0** = no review flags; **2** = valid JSON that needs review; **1** = ingestion/provider failure. A review result still writes its JSON. Output files are replaced atomically. The CLI refuses to overwrite its input.
@@ -31,13 +33,13 @@ Try the deliberate failures:
 ```bash
 change-orders examples/conflict.txt       # exit 2; conflicting amounts and ambiguous date
 change-orders examples/messy-credit.txt   # wrapped fields, mixed case, negative credit
-change-orders examples/audit/inline.txt   # same-line fields
-change-orders examples/audit/pipe-table.txt
-change-orders examples/audit/stacked-form.txt  # form wording, credit, schedule reduction
-change-orders examples/audit/two-column.pdf   # two-column, two-page PDF
+change-orders examples/edge_cases/inline.txt   # same-line fields
+change-orders examples/edge_cases/pipe-table.txt
+change-orders examples/edge_cases/stacked-form.txt  # form wording, credit, schedule reduction
+change-orders examples/edge_cases/two-column.pdf   # two-column, two-page PDF
 change-orders examples/narrative.txt      # local contextual extraction; exit 2
 change-orders examples/conflict.txt --date-order mdy
-change-orders --schema > schema.json
+change-orders --schema > /tmp/change-order-schema.json
 ```
 
 `auto` date handling accepts ISO dates and unambiguous numeric dates. Set `--date-order mdy` or `dmy` when the document's convention is known. Currency is never inferred from `$` alone. Amounts use decimal strings, preserving cents and avoiding binary floating-point arithmetic. Values are limited to 18 integer digits, so contract arithmetic stays within the Decimal precision budget.
@@ -71,7 +73,7 @@ The version 1.1 [JSON Schema](docs/schema.json) covers identifiers, project/part
 
 ```bash
 export OPENAI_API_KEY='your-key'
-change-orders examples/narrative.txt --model YOUR_STRUCTURED_OUTPUT_MODEL -o narrative.json
+change-orders examples/narrative.txt --model YOUR_STRUCTURED_OUTPUT_MODEL -o local-results/narrative.json
 ```
 
 Choose an OpenAI model that supports strict JSON Schema outputs. This explicitly sends **all extracted page text** to OpenAI. The local path never sends documents. There is one bounded API request, no automatic retries, and a 60,000-character model input limit. No agent tools, document instructions, URLs or attachments are executed by the model path.
@@ -122,7 +124,7 @@ python -m build
 
 PDF fixtures are checked in; regenerate with `python scripts/make_fixtures.py`. All examples are synthetic. The small regression corpus compares annotated values and reports abstentions; it is not a real-world accuracy benchmark. The current 14-document corpus checks 128 known values, five expected unresolved values and every review decision. Recall, precision and abstention are reported separately. These are development fixtures, not held-out evaluation data. Model transport and grounding are tested with mock responses; no live provider accuracy result is claimed.
 
-See the [critical audit](docs/audit.md), [approach and failure modes](docs/approach.md), [measured local timings](docs/benchmark.json), and [OCR timings](docs/benchmark-ocr.json). CI tests Python 3.11–3.13, including real OCR, lint, regression evaluation and package building.
+See [approach and failure modes](docs/approach.md), [measured local timings](docs/benchmark.json), and [OCR timings](docs/benchmark-ocr.json). CI tests Python 3.11–3.13, including real OCR, lint, regression evaluation and package building.
 
 ## Boundaries
 

@@ -1,4 +1,4 @@
-"""Regression cases discovered by the critical audit, separate from initial fixtures."""
+"""Regression coverage for extraction, evidence and validation edge cases."""
 
 from pathlib import Path
 
@@ -25,7 +25,7 @@ def evidence():
 
 def test_inline_and_table_labels():
     for filename, amount in [("inline.txt", "2750.00"), ("pipe-table.txt", "950.25")]:
-        result = extract(EXAMPLES / "audit" / filename)
+        result = extract(EXAMPLES / "edge_cases" / filename)
         assert result.fields.project_name.value == "Harbor Clinic"
         assert result.fields.owner.value == "Harbor Facilities"
         assert result.fields.contractor.value == "Beacon Builders"
@@ -34,7 +34,7 @@ def test_inline_and_table_labels():
 
 
 def test_stacked_form_financial_direction_and_scope_boundary():
-    result = extract(EXAMPLES / "audit/stacked-form.txt")
+    result = extract(EXAMPLES / "edge_cases/stacked-form.txt")
     assert result.fields.change_amount.value == "-250.00"
     assert result.fields.revised_contract_amount.value == "104750.00"
     assert result.fields.schedule_days.value == -1
@@ -47,7 +47,7 @@ def test_stacked_form_financial_direction_and_scope_boundary():
 
 
 def test_native_multicolumn_multipage_pdf():
-    result = extract(EXAMPLES / "audit/two-column.pdf")
+    result = extract(EXAMPLES / "edge_cases/two-column.pdf")
     assert result.fields.project_name.value == "Harbor Clinic"
     assert result.fields.issue_date.value == "2026-09-29"
     assert result.fields.change_amount.value == "800.00"

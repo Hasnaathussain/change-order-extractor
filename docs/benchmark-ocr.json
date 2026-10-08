@@ -17,7 +17,7 @@
       "p95_ms": 1.466
     },
     {
-      "file": "audit/inline.txt",
+      "file": "edge_cases/inline.txt",
       "runs": 5,
       "median_ms": 1.291,
       "p95_ms": 1.302
@@ -29,7 +29,7 @@
       "p95_ms": 6.965
     },
     {
-      "file": "audit/two-column.pdf",
+      "file": "edge_cases/two-column.pdf",
       "runs": 5,
       "median_ms": 8.815,
       "p95_ms": 15.72

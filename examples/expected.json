@@ -84,7 +84,7 @@
     }
   },
   {
-    "file": "audit/inline.txt",
+    "file": "edge_cases/inline.txt",
     "review_required": false,
     "fields": {
       "change_order_number": "018",
@@ -101,7 +101,7 @@
     }
   },
   {
-    "file": "audit/stacked-form.txt",
+    "file": "edge_cases/stacked-form.txt",
     "review_required": true,
     "fields": {
       "change_order_number": "021",
@@ -118,7 +118,7 @@
     }
   },
   {
-    "file": "audit/pipe-table.txt",
+    "file": "edge_cases/pipe-table.txt",
     "review_required": false,
     "fields": {
       "change_order_number": "022",
@@ -134,7 +134,7 @@
     }
   },
   {
-    "file": "audit/missing-currency.txt",
+    "file": "edge_cases/missing-currency.txt",
     "review_required": true,
     "fields": {
       "change_order_number": "023",
@@ -148,7 +148,7 @@
     }
   },
   {
-    "file": "audit/arithmetic.txt",
+    "file": "edge_cases/arithmetic.txt",
     "review_required": true,
     "fields": {
       "change_order_number": "024",
@@ -166,7 +166,7 @@
     ]
   },
   {
-    "file": "audit/credit-prose.txt",
+    "file": "edge_cases/credit-prose.txt",
     "review_required": true,
     "fields": {
       "change_order_number": "CO-025",
@@ -181,7 +181,7 @@
     }
   },
   {
-    "file": "audit/zero.txt",
+    "file": "edge_cases/zero.txt",
     "review_required": false,
     "fields": {
       "change_order_number": "026",
@@ -195,7 +195,7 @@
     }
   },
   {
-    "file": "audit/negated-status.txt",
+    "file": "edge_cases/negated-status.txt",
     "review_required": true,
     "fields": {
       "change_order_number": "027",
@@ -211,7 +211,7 @@
     }
   },
   {
-    "file": "audit/two-column.pdf",
+    "file": "edge_cases/two-column.pdf",
     "review_required": false,
     "fields": {
       "change_order_number": "028",

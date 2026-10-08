@@ -21,9 +21,9 @@ rows = []
 for filename in [
     "clean.txt",
     "messy-credit.txt",
-    "audit/inline.txt",
+    "edge_cases/inline.txt",
     "digital.pdf",
-    "audit/two-column.pdf",
+    "edge_cases/two-column.pdf",
 ] + (["scanned.pdf"] if args.ocr else []):
     mode = "auto" if filename == "scanned.pdf" else "off"
     extract(ROOT / "examples" / filename, ocr=mode)

@@ -35,7 +35,7 @@ canvas.drawImage(ImageReader(image), 0, 0, width=595, height=842)
 canvas.save()
 
 # A separate form-like PDF with label/value columns and more than one page.
-canvas = Canvas(str(ROOT / "examples/audit/two-column.pdf"), invariant=1)
+canvas = Canvas(str(ROOT / "examples/edge_cases/two-column.pdf"), invariant=1)
 canvas.setFont("Helvetica", 11)
 rows = [
     ("Change Order #: 028", "Issue Date: 2026-09-29"),
