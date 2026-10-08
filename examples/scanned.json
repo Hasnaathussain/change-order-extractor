@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "source_sha256": "25d702ea093a5a1c8d4c228af59a22c5115943a24350115110e852e475a547f4",
+  "pages": [
+    {
+      "page": 1,
+      "source": "ocr",
+      "characters": 513
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "004",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 0,
+          "end": 17,
+          "quote": "CHANGE ORDER #004",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "project_name": {
+      "value": "Riverside Library Retrofit",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 19,
+          "end": 54,
+          "quote": "Project: Riverside Library Retrofit",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "contract_number": {
+      "value": "RL-2026-17",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 56,
+          "end": 83,
+          "quote": "Contract Number: RL-2026-17",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "owner": {
+      "value": "Riverside Facilities",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 85,
+          "end": 112,
+          "quote": "Owner: Riverside Facilities",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "contractor": {
+      "value": "Northbridge Construction",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 114,
+          "end": 150,
+          "quote": "Contractor: Northbridge Construction",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "issue_date": {
+      "value": "2026-09-18",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 152,
+          "end": 182,
+          "quote": "Issue Date: September 18, 2026",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "description": {
+      "value": "Replace the existing lobby lighting with LED fixtures.",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 184,
+          "end": 251,
+          "quote": "Description: Replace the existing lobby lighting with LED fixtures.",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "currency": {
+      "value": "USD",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 307,
+          "end": 320,
+          "quote": "Currency: USD",
+          "method": "rules",
+          "source": "ocr"
+        },
+        {
+          "page": 1,
+          "start": 322,
+          "end": 362,
+          "quote": "Original Contract Amount: USD 100,000.00",
+          "method": "rules",
+          "source": "ocr"
+        },
+        {
+          "page": 1,
+          "start": 363,
+          "end": 390,
+          "quote": "Prior Changes: USD 5,000.00",
+          "method": "rules",
+          "source": "ocr"
+        },
+        {
+          "page": 1,
+          "start": 392,
+          "end": 420,
+          "quote": "Change Amount: USD 12,450.75",
+          "method": "rules",
+          "source": "ocr"
+        },
+        {
+          "page": 1,
+          "start": 422,
+          "end": 461,
+          "quote": "Revised Contract Amount: USD 117,450.75",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "change_amount": {
+      "value": "12450.75",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 392,
+          "end": 420,
+          "quote": "Change Amount: USD 12,450.75",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "original_contract_amount": {
+      "value": "100000.00",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 322,
+          "end": 362,
+          "quote": "Original Contract Amount: USD 100,000.00",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "prior_changes_amount": {
+      "value": "5000.00",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 363,
+          "end": 390,
+          "quote": "Prior Changes: USD 5,000.00",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "revised_contract_amount": {
+      "value": "117450.75",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 422,
+          "end": 461,
+          "quote": "Revised Contract Amount: USD 117,450.75",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "schedule_days": {
+      "value": 3,
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 462,
+          "end": 494,
+          "quote": "Schedule Impact: 3 calendar days",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    },
+    "status": {
+      "value": "proposed",
+      "confidence": 0.7,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 496,
+          "end": 512,
+          "quote": "Status: proposed",
+          "method": "rules",
+          "source": "ocr"
+        }
+      ],
+      "alternatives": []
+    }
+  },
+  "issues": [
+    {
+      "code": "low_confidence",
+      "field": "change_order_number",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "project_name",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "issue_date",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "description",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "currency",
+      "message": "Confidence is below the configured review threshold"
+    },
+    {
+      "code": "low_confidence",
+      "field": "change_amount",
+      "message": "Confidence is below the configured review threshold"
+    }
+  ],
+  "review_required": true,
+  "overall_confidence": 0.7,
+  "confidence_policy": "heuristic-v1"
+}

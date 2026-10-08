@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "change-order-extractor"
+version = "0.1.0"
+readme = "README.md"
+license = "MIT"
+authors = [{name = "Hasnaat Hussain"}]
+description = "Evidence-backed change-order extraction with explicit review decisions"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.10,<3", "pypdf>=5,<7"]
+
+[project.optional-dependencies]
+ocr = ["pypdfium2>=4,<6", "Pillow>=11,<13"]
+llm = ["httpx>=0.28,<1"]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "build>=1,<2", "reportlab>=4,<5"]
+
+[project.scripts]
+change-orders = "change_orders.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/change_orders"]

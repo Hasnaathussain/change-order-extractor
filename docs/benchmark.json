@@ -1,0 +1,25 @@
+{
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "measurement": "warm process, sequential, local fixtures, no network",
+  "results": [
+    {
+      "file": "clean.txt",
+      "runs": 100,
+      "median_ms": 0.987,
+      "p95_ms": 1.111
+    },
+    {
+      "file": "messy-credit.txt",
+      "runs": 100,
+      "median_ms": 0.654,
+      "p95_ms": 0.725
+    },
+    {
+      "file": "digital.pdf",
+      "runs": 100,
+      "median_ms": 5.531,
+      "p95_ms": 6.098
+    }
+  ]
+}

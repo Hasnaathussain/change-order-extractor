@@ -1,0 +1,16 @@
+CHANGE ORDER #004
+Project: Riverside Library Retrofit
+Contract Number: RL-2026-17
+Owner: Riverside Facilities
+Contractor: Northbridge Construction
+Issue Date: September 18, 2026
+Description: Replace the existing lobby lighting with LED fixtures.
+Include removal, disposal, wiring and commissioning.
+
+Currency: USD
+Original Contract Amount: USD 100,000.00
+Prior Changes: USD 5,000.00
+Change Amount: USD 12,450.75
+Revised Contract Amount: USD 117,450.75
+Schedule Impact: 3 calendar days
+Status: proposed

@@ -1,0 +1,31 @@
+{
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "measurement": "warm process, sequential, local fixtures, no network",
+  "results": [
+    {
+      "file": "clean.txt",
+      "runs": 5,
+      "median_ms": 1.43,
+      "p95_ms": 1.705
+    },
+    {
+      "file": "messy-credit.txt",
+      "runs": 5,
+      "median_ms": 0.857,
+      "p95_ms": 0.875
+    },
+    {
+      "file": "digital.pdf",
+      "runs": 5,
+      "median_ms": 6.624,
+      "p95_ms": 7.027
+    },
+    {
+      "file": "scanned.pdf",
+      "runs": 5,
+      "median_ms": 2681.448,
+      "p95_ms": 2795.953
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0",
+  "source_sha256": "67a0aebcf69a98d6aedfc13dc034a02d0ece743169c8c064779b301541e67047",
+  "pages": [
+    {
+      "page": 1,
+      "source": "text",
+      "characters": 502
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "004",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 0,
+          "end": 17,
+          "quote": "CHANGE ORDER #004",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "project_name": {
+      "value": "Riverside Library Retrofit",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 18,
+          "end": 53,
+          "quote": "Project: Riverside Library Retrofit",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "contract_number": {
+      "value": "RL-2026-17",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 54,
+          "end": 81,
+          "quote": "Contract Number: RL-2026-17",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "owner": {
+      "value": "Riverside Facilities",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 82,
+          "end": 109,
+          "quote": "Owner: Riverside Facilities",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "contractor": {
+      "value": "Northbridge Construction",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 110,
+          "end": 146,
+          "quote": "Contractor: Northbridge Construction",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "issue_date": {
+      "value": "2026-09-18",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 147,
+          "end": 177,
+          "quote": "Issue Date: September 18, 2026",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "description": {
+      "value": "Replace the existing lobby lighting with LED fixtures. Include removal, disposal, wiring and commissioning.",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 178,
+          "end": 298,
+          "quote": "Description: Replace the existing lobby lighting with LED fixtures.\nInclude removal, disposal, wiring and commissioning.",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "currency": {
+      "value": "USD",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 300,
+          "end": 313,
+          "quote": "Currency: USD",
+          "method": "rules",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 314,
+          "end": 354,
+          "quote": "Original Contract Amount: USD 100,000.00",
+          "method": "rules",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 355,
+          "end": 382,
+          "quote": "Prior Changes: USD 5,000.00",
+          "method": "rules",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 383,
+          "end": 411,
+          "quote": "Change Amount: USD 12,450.75",
+          "method": "rules",
+          "source": "text"
+        },
+        {
+          "page": 1,
+          "start": 412,
+          "end": 451,
+          "quote": "Revised Contract Amount: USD 117,450.75",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "change_amount": {
+      "value": "12450.75",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 383,
+          "end": 411,
+          "quote": "Change Amount: USD 12,450.75",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "original_contract_amount": {
+      "value": "100000.00",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 314,
+          "end": 354,
+          "quote": "Original Contract Amount: USD 100,000.00",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "prior_changes_amount": {
+      "value": "5000.00",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 355,
+          "end": 382,
+          "quote": "Prior Changes: USD 5,000.00",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "revised_contract_amount": {
+      "value": "117450.75",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 412,
+          "end": 451,
+          "quote": "Revised Contract Amount: USD 117,450.75",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "schedule_days": {
+      "value": 3,
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 452,
+          "end": 484,
+          "quote": "Schedule Impact: 3 calendar days",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    },
+    "status": {
+      "value": "proposed",
+      "confidence": 0.95,
+      "state": "extracted",
+      "evidence": [
+        {
+          "page": 1,
+          "start": 485,
+          "end": 501,
+          "quote": "Status: proposed",
+          "method": "rules",
+          "source": "text"
+        }
+      ],
+      "alternatives": []
+    }
+  },
+  "issues": [],
+  "review_required": false,
+  "overall_confidence": 0.95,
+  "confidence_policy": "heuristic-v1"
+}

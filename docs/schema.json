@@ -1,0 +1,697 @@
+{
+  "$defs": {
+    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "pattern": "^-?(?:0|[1-9]\\d*)\\.\\d{2}$",
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d*)\\\\.\\\\d{2}$')])]]",
+      "type": "object"
+    },
+    "Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')])]]",
+      "type": "object"
+    },
+    "Alternative_Literal__USD____CAD____AUD____EUR____GBP____PKR___": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "enum": [
+            "USD",
+            "CAD",
+            "AUD",
+            "EUR",
+            "GBP",
+            "PKR"
+          ],
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[Literal['USD', 'CAD', 'AUD', 'EUR', 'GBP', 'PKR']]",
+      "type": "object"
+    },
+    "Alternative_Literal__proposed____approved____rejected____pending___": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "enum": [
+            "proposed",
+            "approved",
+            "rejected",
+            "pending"
+          ],
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[Literal['proposed', 'approved', 'rejected', 'pending']]",
+      "type": "object"
+    },
+    "Alternative_int_": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "integer"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[int]",
+      "type": "object"
+    },
+    "Alternative_str_": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "evidence"
+      ],
+      "title": "Alternative[str]",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "minimum": 1,
+          "title": "Page",
+          "type": "integer"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "rules",
+            "llm"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "text",
+            "pdf",
+            "ocr"
+          ],
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "page",
+        "start",
+        "end",
+        "quote",
+        "method",
+        "source"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^-?(?:0|[1-9]\\d*)\\.\\d{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^-?(?:0|[1-9]\\\\d*)\\\\.\\\\d{2}$')])]]",
+      "type": "object"
+    },
+    "Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[Annotated[str, FieldInfo(annotation=NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='^\\\\d{4}-\\\\d{2}-\\\\d{2}$')])]]",
+      "type": "object"
+    },
+    "Extracted_Literal__USD____CAD____AUD____EUR____GBP____PKR___": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "enum": [
+                "USD",
+                "CAD",
+                "AUD",
+                "EUR",
+                "GBP",
+                "PKR"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_Literal__USD____CAD____AUD____EUR____GBP____PKR___"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[Literal['USD', 'CAD', 'AUD', 'EUR', 'GBP', 'PKR']]",
+      "type": "object"
+    },
+    "Extracted_Literal__proposed____approved____rejected____pending___": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "enum": [
+                "proposed",
+                "approved",
+                "rejected",
+                "pending"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_Literal__proposed____approved____rejected____pending___"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[Literal['proposed', 'approved', 'rejected', 'pending']]",
+      "type": "object"
+    },
+    "Extracted_int_": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_int_"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[int]",
+      "type": "object"
+    },
+    "Extracted_str_": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "confidence": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "state": {
+          "default": "missing",
+          "enum": [
+            "extracted",
+            "missing",
+            "invalid",
+            "conflict"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative_str_"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        }
+      },
+      "title": "Extracted[str]",
+      "type": "object"
+    },
+    "Fields": {
+      "additionalProperties": false,
+      "properties": {
+        "change_order_number": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "project_name": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "contract_number": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "owner": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "contractor": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "issue_date": {
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern_____d_4_-__d_2_-__d_2________"
+        },
+        "description": {
+          "$ref": "#/$defs/Extracted_str_"
+        },
+        "currency": {
+          "$ref": "#/$defs/Extracted_Literal__USD____CAD____AUD____EUR____GBP____PKR___"
+        },
+        "change_amount": {
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+        },
+        "original_contract_amount": {
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+        },
+        "prior_changes_amount": {
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+        },
+        "revised_contract_amount": {
+          "$ref": "#/$defs/Extracted_Annotated_str__FieldInfo_annotation_NoneType__required_True__metadata___PydanticGeneralMetadata_pattern___-____1-9___d_2________"
+        },
+        "schedule_days": {
+          "$ref": "#/$defs/Extracted_int_"
+        },
+        "status": {
+          "$ref": "#/$defs/Extracted_Literal__proposed____approved____rejected____pending___"
+        }
+      },
+      "title": "Fields",
+      "type": "object"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "PageInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "source": {
+          "enum": [
+            "text",
+            "pdf",
+            "ocr"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "characters": {
+          "title": "Characters",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "page",
+        "source",
+        "characters"
+      ],
+      "title": "PageInfo",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_sha256": {
+      "title": "Source Sha256",
+      "type": "string"
+    },
+    "pages": {
+      "items": {
+        "$ref": "#/$defs/PageInfo"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "fields": {
+      "$ref": "#/$defs/Fields"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "review_required": {
+      "title": "Review Required",
+      "type": "boolean"
+    },
+    "overall_confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Overall Confidence",
+      "type": "number"
+    },
+    "confidence_policy": {
+      "const": "heuristic-v1",
+      "default": "heuristic-v1",
+      "title": "Confidence Policy",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_sha256",
+    "pages",
+    "fields",
+    "issues",
+    "review_required",
+    "overall_confidence"
+  ],
+  "title": "Result",
+  "type": "object"
+}

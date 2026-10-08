@@ -1,0 +1,11 @@
+Change Order #: 011
+Project: Riverside Library Retrofit
+Issue Date: 09/10/2026
+Description: Add acoustic panels in the reading room.
+Currency: USD
+Change Amount: USD 8,000.00
+Change Amount: USD 9,000.00
+Original Contract Amount: USD 100,000.00
+Prior Changes: USD 5,000.00
+Revised Contract Amount: USD 200,000.00
+Status: approved

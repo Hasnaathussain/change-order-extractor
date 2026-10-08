@@ -1,0 +1,74 @@
+[
+  {
+    "file": "clean.txt",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "004",
+      "project_name": "Riverside Library Retrofit",
+      "contract_number": "RL-2026-17",
+      "owner": "Riverside Facilities",
+      "contractor": "Northbridge Construction",
+      "issue_date": "2026-09-18",
+      "currency": "USD",
+      "change_amount": "12450.75",
+      "original_contract_amount": "100000.00",
+      "prior_changes_amount": "5000.00",
+      "revised_contract_amount": "117450.75",
+      "schedule_days": 3,
+      "status": "proposed"
+    }
+  },
+  {
+    "file": "messy-credit.txt",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "007",
+      "project_name": "Riverside Library Retrofit",
+      "issue_date": "2026-09-18",
+      "currency": "USD",
+      "change_amount": "-2300.00",
+      "schedule_days": 0,
+      "status": "pending",
+      "contractor": null
+    }
+  },
+  {
+    "file": "conflict.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "011",
+      "issue_date": null,
+      "change_amount": null,
+      "currency": "USD",
+      "revised_contract_amount": "200000.00",
+      "status": "approved"
+    }
+  },
+  {
+    "file": "digital.pdf",
+    "review_required": false,
+    "fields": {
+      "change_order_number": "004",
+      "project_name": "Riverside Library Retrofit",
+      "issue_date": "2026-09-18",
+      "currency": "USD",
+      "change_amount": "12450.75",
+      "schedule_days": 3,
+      "status": "proposed"
+    }
+  },
+  {
+    "file": "narrative.txt",
+    "review_required": true,
+    "fields": {
+      "change_order_number": "CO-019",
+      "project_name": "Riverside Library Retrofit",
+      "issue_date": "2026-09-21",
+      "currency": "USD",
+      "change_amount": "1850.00",
+      "schedule_days": 2,
+      "status": "proposed"
+    },
+    "allow_abstention": true
+  }
+]
